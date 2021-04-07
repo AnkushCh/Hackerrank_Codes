@@ -5,49 +5,51 @@
 #define vv vector<vector<int>>
 using namespace std;
 
-v bol;
+vector<bool> bol;
 vv g;
 
 void edge(int a, int b)
 {
     g[a].pb(b);
+    g[b].pb(a);
 }
 
 void bfs(int u)
 {
-    queue<int>q;
+    queue<int> q;
+  
     q.push(u);
     bol[u] = true;
-    while(!q.empty())
-    {
-        int x = q.front();
+  
+    while (!q.empty()) {
+  
+        int f = q.front();
         q.pop();
-        cout << x << " ";
-        for(auto i = g[x].begin(); i != g[x].end(); i++)
-        {
-            if(!bol[*i]){
-            q.push(*i);
-            bol[*i] = true;
+  
+        cout << f << " ";
+
+        for (auto i = g[f].begin(); i != g[f].end(); i++) {
+            if (!bol[*i]) {
+                q.push(*i);
+                bol[*i] = true;
             }
         }
     }
 }
-
 int main()
 {
-    int n,e;
-
-    cin >> n >> e;    // creating n nodes and e edges
+    int n = 5;
     bol.assign(n,false);   // marking visited element false initially
     g.assign(n,vector<int>()); // creating adjancy list of graph
 
-    int a,b;
-    f(i,n)
-    {
-        cin >> a >> b;
-        edge(a,b);
-    }
-
+    edge(0, 1);
+    edge(0, 4);
+    edge(1, 2);
+    edge(1, 3);
+    edge(1, 4);
+    edge(2, 3);
+    edge(3, 4);
+    
     f(i,n)
     {
         if(!bol[i])

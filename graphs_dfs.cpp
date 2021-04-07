@@ -16,7 +16,7 @@ void dfsutil(int u, v adj[], vector<bool>&b)
     cout << u <<" ";
     for(int i = 0; i < adj[u].size(); i++)
     {
-        if(adj[u][i] == false)
+        if(b[adj[u][i]] == false)
         dfsutil(adj[u][i],adj,b);
     }
 }
@@ -30,6 +30,7 @@ void dfs(v adj[], int n)
         dfsutil(u,adj,b);
     }
 }
+
 int main()
 {
     int n = 5;
